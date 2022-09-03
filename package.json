@@ -1,0 +1,31 @@
+{
+  "name": "api-universidades",
+  "version": "1.0.0",
+  "description": "Consumo de API que retorna as universidades de um determinado país, e salvamento no banco de dados Mongo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nailtonssantos/api-universidades.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nailtonssantos/api-universidades/issues"
+  },
+  "homepage": "https://github.com/nailtonssantos/api-universidades#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
