@@ -11,11 +11,39 @@ const country = ['uruguay']
 
 router.get('/buscaAPI', async  (req, res) => {
     try {
-        const { data } = await api.get(`http://universities.hipolabs.com/search?country=${country}`);
-        return res.send({ data })
+            const { data } = await api.get(`http://universities.hipolabs.com/search?country=${country}`);
+            res.json({ data })
+
+            /*for (let i = 0; i < data.length; i++){
+                
+                const domains = data.map(d => d.domains)
+                const alpha_two_code = data.map(d => d.alpha_two_code)
+                const country = data.map(d => d.country)
+                const web_pages = data.map(d => d.web_pages)
+                const name = data.map(d => d.name)
+                const state_province = data.map(d => d.state-province)
+                
+                const universidade = new UniversidadesModel({
+                    domains,
+                    alpha_two_code,
+                    country,
+                    web_pages,
+                    name,
+                    state_province,
+                })
+                
+                universidade.save()
+                
+                res.send({
+                    message: 'success'
+                })
+        }*/
+
     } catch (error) {
         res.send({ error: error.message})
     }
+    
+    
 })
 
 router.get('/universidades/:id?', UniversidadeController.get)
