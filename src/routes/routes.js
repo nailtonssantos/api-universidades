@@ -1,5 +1,6 @@
 const api = require('./api')
 const router = require('express').Router()
+const UniversidadesModel = require('../models/universidades')
 const UniversidadeController = require('../controllers/universidades')
 
 
@@ -14,31 +15,40 @@ router.get('/buscaAPI', async  (req, res) => {
             const { data } = await api.get(`http://universities.hipolabs.com/search?country=${country}`);
             res.json({ data })
 
-            /*for (let i = 0; i < data.length; i++){
+            try {
                 
-                const domains = data.map(d => d.domains)
-                const alpha_two_code = data.map(d => d.alpha_two_code)
-                const country = data.map(d => d.country)
-                const web_pages = data.map(d => d.web_pages)
-                const name = data.map(d => d.name)
-                const state_province = data.map(d => d.state-province)
-                
-                const universidade = new UniversidadesModel({
-                    domains,
-                    alpha_two_code,
-                    country,
-                    web_pages,
-                    name,
-                    state_province,
-                })
-                
-                universidade.save()
-                
-                res.send({
-                    message: 'success'
-                })
-        }*/
+                for (let i = 0; i < data.length; i++){
+                                         
+                    let dadosAPI = []
 
+                    dadosAPI = ({
+                        domains: data.domains,
+                        country: data.country,
+                        alpha_two_code: data.alpha_two_code,
+                        country: data.country,
+                        web_pages: data.web_pages,
+                        name: data.name,
+                        state_province: data.state_province
+                    })
+
+                    async function postAPI(req, res){
+    
+                        const universidade = new UniversidadesModel({
+                            domains,
+                            alpha_two_code,
+                            country,
+                            web_pages,
+                            name,
+                            state_province,
+                        })
+                    
+                        universidade.save()
+                        console.log({message: 'sucesso'})
+                    }
+                }
+            }catch (error) {
+                console.error({ error: error.message})
+            }
     } catch (error) {
         res.send({ error: error.message})
     }
@@ -55,7 +65,5 @@ router.delete('/universidades/:id', UniversidadeController.remove)
 /*router.get('/universidades', (req, res) => {
     res.json({message:'UFR - Rondonópolis'});
 })*/
-
-
 
 module.exports = router

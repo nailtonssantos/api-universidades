@@ -69,5 +69,5 @@ module.exports = {
     get,
     post,
     put,
-    remove,
+    remove
 }
