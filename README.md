@@ -7,6 +7,7 @@ INSTALAÇÕES NECESSÁRIAS:
 - npm install axios
 - npm install nodemon --save
 - npm install mongodb
+- npm install mongoose
 
 
 MANUAL INSTALAÇÃO MONGO EM AMBIENTE LINUX 

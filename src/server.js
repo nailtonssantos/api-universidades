@@ -1,26 +1,21 @@
 const express = require('express')
+const cors = require('cors')
+const db = require('./database/db')
+const routes = require('./routes/routes')
 const PORT = 3000
 
-const routes = require('./routes/routes')
+const app = express()
 
-const server = express()
+//Conexão com o banco de dados
+db.connect()
 
-const conn = require('./database/db')
+//habilita server para receber dados no formato JSON
+app.use(express.json())
 
-//Read Body
-server.use(
-    express.urlencoded({
-        extended: true
-    })
-)
-
-server.use(express.json())
-
-server.use('/api', routes)
+//Definindo as rotas
+app.use('/api', routes)
 
 
-
-
-server.listen(PORT || 8000, () => {
+app.listen(PORT || 8000, () => {
     console.log(`Servido está rodando em localhost: ${PORT}`)
 })

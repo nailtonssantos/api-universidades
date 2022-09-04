@@ -1,5 +1,6 @@
 const api = require('./api')
 const router = require('express').Router()
+const UniversidadeController = require('../controllers/universidades')
 
 
 router.get('/', (req, res) => {
@@ -17,10 +18,15 @@ router.get('/buscaAPI', async  (req, res) => {
     }
 })
 
+router.get('/universidades/:id?', UniversidadeController.get)
+router.post('/universidades', UniversidadeController.post)
+router.put('/universidades/:id', UniversidadeController.put)
+router.delete('/universidades/:id', UniversidadeController.remove)
 
-router.get('/universidades', (req, res) => {
+
+/*router.get('/universidades', (req, res) => {
     res.json({message:'UFR - Rondonópolis'});
-})
+})*/
 
 
 
