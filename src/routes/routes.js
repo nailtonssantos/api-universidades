@@ -14,10 +14,14 @@ router.get('/buscaAPI', async  (req, res) => {
             
             for(let i=0; i < countries.length; i++){
 
-            let { data } = await api.get(`http://universities.hipolabs.com/search?country=${countries[i]}`);
+            const { data } = await api.get(`http://universities.hipolabs.com/search?country=${countries[i]}`);
             res.json({ data })
+            
+            const dados = JSON.stringify(data)
+            let dadosApi = JSON.parse(dados)
+            //dadosApi = JSON.parse(dados.toString())
 
-            console.log(countries[i])
+            console.log(dadosApi.domains[i])
             } 
     } catch (error) {
         res.send({ error: error.message})
